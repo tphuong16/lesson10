@@ -1,0 +1,190 @@
+<?php
+echo "Bài 1. ";
+interface Resizable {
+    public function resizeWidth($value);
+    public function resizeHeight($value);
+}
+
+class Rectangle implements Resizable {
+    protected $width;
+    protected $height;
+
+    public function __construct($width, $height) {
+        $this->width = $width;
+        $this->height = $height;
+    }
+
+    public function resizeWidth($value) {
+        $this->width += $value;
+    }
+
+    public function resizeHeight($value) {
+        $this->height += $value;
+    }
+
+    public function getWidth() {
+        return $this->width;
+    }
+
+    public function getHeight() {
+        return $this->height;
+    }
+}
+
+// Sử dụng lớp Rectangle và interface Resizable:
+$rectangle = new Rectangle(10, 5);
+echo "Kích thước ban đầu của hình chữ nhật: " . $rectangle->getWidth() . " x " . $rectangle->getHeight() . "<br>";
+
+$rectangle->resizeWidth(50);
+$rectangle->resizeHeight(30);
+echo "Kích thước sau khi điều chỉnh: " . $rectangle->getWidth() . " x " . $rectangle->getHeight() ;
+
+echo "<br>";
+echo "Bài 2. ";
+interface Logger {
+    public function logInfo();
+    public function logWarning();
+    public function logError();
+  }
+  class FileLogger implements Logger {
+    public function logInfo() {
+  
+    }
+    public function logWarning() {
+        
+    }
+    public function logError() {
+        
+    }
+    protected $log;
+    public function __construct($log) {
+        $this->log = $log;
+        $this->logInfo();
+        $this->logWarning();
+        $this->logError();
+    }
+    public function getLog() {
+        return $this->log;
+    }
+  }
+  class DatabaseLogger implements Logger {
+    public function logInfo() {
+  
+    }
+    public function logWarning() {
+        
+    }
+    public function logError() {
+        
+    }
+    protected $log;
+    public function __construct($log) {
+        $this->log = $log;
+        $this->logInfo();
+        $this->logWarning();
+        $this->logError();
+    }
+    public function getLog() {
+        return $this->log;
+    }
+  }
+  $FileLogger = new FileLogger("bug...1");
+  $DatabaseLogger = new DatabaseLogger("bug...2");
+  echo $FileLogger->getLog(). "<br>";
+  echo $DatabaseLogger->getLog(). "<br>";
+
+  echo "Bài 3. ";
+interface Drawable {
+    public function draw();
+}
+
+class circle implements Drawable{
+    protected $radius;
+
+    public function __construct($radius)
+    {
+        $this -> radius = $radius;
+    }
+
+    public function draw(){
+        echo "Hình tròn có bán kính " . $this -> radius . "cm" . "<br>";
+    }
+}
+
+class Square implements Drawable{
+    protected $length;
+    protected $width;
+
+    public function __construct($length, $width){
+        $this -> length = $length;
+        $this -> width = $width;
+    }
+
+    public function draw(){
+        echo "Hình chữ nhật có chiều dài là " . $this -> length . " cm chiều rộng là " . $this -> width . "cm" ;
+    }
+}
+
+$Circle = new circle(6);
+$Circle -> draw();
+
+$square = new Square(10,5);
+$square -> draw();
+
+echo "<br>";
+echo "Bài 4. ";
+interface Sortable {
+    public function sort();
+}
+
+class ArraySorter implements Sortable {
+    protected $data;
+
+    public function __construct($data) {
+        $this->data = $data;
+    }
+
+    public function sort() {
+        sort($this->data);
+        return $this->data;
+    }
+}
+$arraySorter = new ArraySorter([1,6,2,4,9]);
+$sortedArray = $arraySorter->sort();
+echo "Mảng sau khi sắp xếp: " . implode(", ", $sortedArray);
+
+echo "<br>" . "Bài 5. ";
+interface Encryptable {
+    public function encrypt($data);
+    public function decrypt($encryptedData);
+}
+
+class AES implements Encryptable {
+    public function encrypt($data) {
+        echo "Encrypting data using AES...";
+    }
+
+    public function decrypt($encryptedData) {
+        echo "Decrypting AES encrypted data...";
+    }
+}
+
+class DES implements Encryptable {
+    public function encrypt($data) {
+        echo "Encrypting data using DES...";
+    }
+
+    public function decrypt($encryptedData) {
+        echo "Decrypting DES encrypted data...";
+    }
+}
+
+$aes = new AES();
+$aes->encrypt("Data to encrypt"); 
+$aes->decrypt("Encrypted data"); 
+echo "<br>";
+$des = new DES();
+$des->encrypt("Data to encrypt"); 
+$des->decrypt("Encrypted data"); 
+
+?>
