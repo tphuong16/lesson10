@@ -1,0 +1,184 @@
+<?php
+//bai1
+echo "Bài 1. ";
+abstract class Shape {
+    abstract public function calculateArea();
+}
+
+class Circle extends Shape {
+    private $radius;
+
+    public function __construct($radius) {
+        $this->radius = $radius;
+    }
+
+    public function calculateArea() {
+        return pi () * pow($this->radius, 2);
+    }
+}
+
+class Rectangle extends Shape {
+    private $width;
+    private $height;
+
+    public function __construct($width, $height) {
+        $this->width = $width;
+        $this->height = $height;
+    }
+
+    public function calculateArea() {
+        return $this->width * $this->height;
+    }
+}
+
+// Sử dụng các lớp trên:
+$circle = new Circle(2);
+$circleArea = $circle->calculateArea();
+echo "Diện tích hình tròn: " . $circleArea . "<br>";
+
+$rectangle = new Rectangle(1, 6);
+$rectangleArea = $rectangle->calculateArea();
+echo "Diện tích hình chữ nhật: " . $rectangleArea . "<br>";
+
+//bai2
+echo "Bài 2. ";
+abstract class Animal {
+    abstract public function makeSound();
+}
+
+class Dog extends Animal {
+    public function makeSound() {
+        return "gâu! gâu!";
+    }
+}
+
+class Cat extends Animal {
+    public function makeSound() {
+        return "Meow! Meow!";
+    }
+}
+
+// Sử dụng các lớp trên:
+$dog = new Dog();
+echo $dog->makeSound(); 
+
+$cat = new Cat();
+echo $cat->makeSound(); // In ra: Meow! Meow!
+
+
+
+//bai3
+echo "<br>";
+echo "Bài 3. ";
+abstract class Employee {
+    abstract public function name();
+    abstract public function salary();
+}
+class Manager extends Employee {
+    protected $name;
+    protected $salary;
+    public function __construct($name, $salary) {
+      $this->name = $name;
+      $this->salary = $salary;
+    }
+    public function name() {
+    // echo $this->name;
+        }
+    public function salary() {
+        // echo $this->salary;
+        }
+    public function getInf() {
+        echo $this->name;
+        echo $this->salary;
+        }
+  }
+class Staff extends Employee {
+ public function __construct($name, $salary) {
+    $this->name = $name;
+    $this->salary = $salary;
+}
+    public function name() {
+        // echo $this->name;
+            }
+    public function salary() {
+        // echo $this->salary;
+    }
+    public function getInf() {
+        echo $this->name;
+        echo $this->salary;
+        }
+}
+$manager = new Manager("Phương ", "20tr");
+$staff = new Staff("Thu ", "8tr");
+echo $manager->getInf()."<br>";
+echo $staff->getInf()."<br>";
+
+echo "Bài 4. ";
+abstract class Vehicle {
+    abstract public function start();
+}
+
+class Car extends Vehicle {
+    public function start(){
+        return "Car is starting ....";
+    }
+}
+
+class Motorcycle extends Vehicle {
+    public function start(){
+        return "Motorcycle is starting ....";
+    }
+}
+
+$car = new Car();
+echo $car->start();
+
+$motorcycle = new Motorcycle();
+echo $motorcycle->start();
+
+
+echo "<br>";
+echo "Bài 5. ";
+
+abstract class Database{
+    abstract public function connect();
+    abstract public function query();
+    abstract public function disconnect();
+}
+
+class MySQLDatabase extends Database{
+   public function connect(){
+       echo "------MySQLDatabase--------" . "<br>";
+       return "Câu lệnh kết nối: conn = mysqli_connect(servername, username, password, database);";
+   }
+   public function query(){
+       return "Câu lệnh truy vấn: SELECT * FROM <tên bảng>";
+   }
+   public function disconnect(){
+       return "Câu lệnh ngắt kết nối: mysqli_close(conn);";
+   }
+}
+
+class PostgreSQLDatabase extends Database{
+   public function connect(){
+       echo "------PostgreSQLDatabase--------" . "<br>";
+       return "Câu lệnh kết nối: conn = new PDO(pgsql:host=host;dbname=dbname, username, password)";
+   }
+   public function query(){
+       return "Câu lệnh truy vấn: SELECT * FROM <tên bảng>";
+   }
+   public function disconnect(){
+       return "Câu lệnh ngắt kết nối: conn = null";
+   }
+}
+
+
+$Databases = [ new MySQLDatabase, new PostgreSQLDatabase];
+foreach ($Databases as $Database){
+   echo $Database-> connect() . "<br />";
+   echo $Database -> query() . "<br />";
+   echo $Database-> disconnect() . "<br />";
+}
+
+
+?>
